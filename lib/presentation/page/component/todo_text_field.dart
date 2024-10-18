@@ -25,9 +25,11 @@ class _TodoTextFieldState extends State<TodoTextField> {
       decoration: const InputDecoration(labelText: "What to do ?"),
       controller: todoContoller,
       keyboardType: TextInputType.text,
-      onEditingComplete: () {
-        context.read<TodoBloc>().add(
-            TodoEvent.insert(Todo(desc: todoContoller.text, id: uuid.v4())));
+      onSubmitted: (value) {
+        todoContoller.text = "";
+        context
+            .read<TodoBloc>()
+            .add(TodoEvent.insert(Todo(desc: value, id: uuid.v4())));
       },
     );
   }

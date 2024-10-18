@@ -1,5 +1,5 @@
+import 'package:to_do_app/data/localdatasource/db/todo_database.dart';
 import 'package:to_do_app/data/localdatasource/local_data_source.dart';
-import 'package:to_do_app/data/todo_database.dart';
 import 'package:to_do_app/domain/models/todo.dart';
 
 class LocalDataSourceImpl implements LocalDataSource {
@@ -26,10 +26,25 @@ class LocalDataSourceImpl implements LocalDataSource {
     List<Map<String, dynamic>> maps = await todoDatabase.db!
         .query(tableTodo, columns: [idColumn, descColumn, doneColumn]);
     return maps
-        .map((e) => Todo(
-            desc: e[descColumn],
-            id: doneColumn,
-            done: e[doneColumn] == 1 ? true : false))
+        .map((e) => Todo(desc: e["desc"], id: e["id"], done: false))
         .toList();
+  }
+
+  @override
+  Future<void> delete(String id) async {
+    if (todoDatabase.db == null) {
+      await todoDatabase.open();
+    }
+    todoDatabase.db!.delete(tableTodo, where: "id = ?", whereArgs: [id]);
+  }
+
+  @override
+  Future<void> update(Todo todo) async {
+    if (todoDatabase.db == null) {
+      await todoDatabase.open();
+    }
+    todoDatabase.db!.update(
+        tableTodo, Map.of({descColumn: todo.desc, doneColumn: todo.done}),
+        where: "id = ?", whereArgs: [todo.id]);
   }
 }

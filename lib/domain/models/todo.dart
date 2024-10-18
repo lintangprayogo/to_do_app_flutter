@@ -12,5 +12,4 @@ class Todo with _$Todo {
       required String id,
       @Default(false) bool done}) = _Todo;
 
-
 }

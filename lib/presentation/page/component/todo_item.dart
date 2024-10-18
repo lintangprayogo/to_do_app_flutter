@@ -1,5 +1,7 @@
 import 'package:to_do_app/domain/models/todo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/presentation/bloc/todo_bloc.dart';
 
 class TodoItem extends StatefulWidget {
   const TodoItem({
@@ -58,7 +60,10 @@ class _TodoItemState extends State<TodoItem> {
                       onPressed: () {
                         setState(() {
                           _error = textController.text.isEmpty ? true : false;
-                        
+                          if (!_error) {
+                            context.read<TodoBloc>().add(TodoEvent.update(widget.todo.copyWith(desc: textController.text)));
+                            Navigator.pop(context);
+                          }
                         });
                       },
                       child: const Text('EDIT'),
@@ -72,8 +77,7 @@ class _TodoItemState extends State<TodoItem> {
       },
       leading: Checkbox(
         value: widget.todo.done,
-        onChanged: (bool? checked) {
-        },
+        onChanged: (bool? checked) {},
       ),
       title: Text(widget.todo.desc),
     );

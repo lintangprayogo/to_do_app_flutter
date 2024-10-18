@@ -19,24 +19,27 @@ mixin _$TodoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String id) remove,
+    required TResult Function(Todo todo) remove,
     required TResult Function(Todo todo) insert,
+    required TResult Function(Todo todo) update,
     required TResult Function() getData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String id)? remove,
+    TResult? Function(Todo todo)? remove,
     TResult? Function(Todo todo)? insert,
+    TResult? Function(Todo todo)? update,
     TResult? Function()? getData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String id)? remove,
+    TResult Function(Todo todo)? remove,
     TResult Function(Todo todo)? insert,
+    TResult Function(Todo todo)? update,
     TResult Function()? getData,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$TodoEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_Remove value) remove,
     required TResult Function(_Insert value) insert,
+    required TResult Function(_Update value) update,
     required TResult Function(_GetData value) getData,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$TodoEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_Remove value)? remove,
     TResult? Function(_Insert value)? insert,
+    TResult? Function(_Update value)? update,
     TResult? Function(_GetData value)? getData,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$TodoEvent {
     TResult Function(_Started value)? started,
     TResult Function(_Remove value)? remove,
     TResult Function(_Insert value)? insert,
+    TResult Function(_Update value)? update,
     TResult Function(_GetData value)? getData,
     required TResult orElse(),
   }) =>
@@ -136,8 +142,9 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String id) remove,
+    required TResult Function(Todo todo) remove,
     required TResult Function(Todo todo) insert,
+    required TResult Function(Todo todo) update,
     required TResult Function() getData,
   }) {
     return started();
@@ -147,8 +154,9 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String id)? remove,
+    TResult? Function(Todo todo)? remove,
     TResult? Function(Todo todo)? insert,
+    TResult? Function(Todo todo)? update,
     TResult? Function()? getData,
   }) {
     return started?.call();
@@ -158,8 +166,9 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String id)? remove,
+    TResult Function(Todo todo)? remove,
     TResult Function(Todo todo)? insert,
+    TResult Function(Todo todo)? update,
     TResult Function()? getData,
     required TResult orElse(),
   }) {
@@ -175,6 +184,7 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_Remove value) remove,
     required TResult Function(_Insert value) insert,
+    required TResult Function(_Update value) update,
     required TResult Function(_GetData value) getData,
   }) {
     return started(this);
@@ -186,6 +196,7 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_Remove value)? remove,
     TResult? Function(_Insert value)? insert,
+    TResult? Function(_Update value)? update,
     TResult? Function(_GetData value)? getData,
   }) {
     return started?.call(this);
@@ -197,6 +208,7 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_Remove value)? remove,
     TResult Function(_Insert value)? insert,
+    TResult Function(_Update value)? update,
     TResult Function(_GetData value)? getData,
     required TResult orElse(),
   }) {
@@ -217,7 +229,9 @@ abstract class _$$RemoveImplCopyWith<$Res> {
           _$RemoveImpl value, $Res Function(_$RemoveImpl) then) =
       __$$RemoveImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String id});
+  $Res call({Todo todo});
+
+  $TodoCopyWith<$Res> get todo;
 }
 
 /// @nodoc
@@ -233,28 +247,38 @@ class __$$RemoveImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? todo = null,
   }) {
     return _then(_$RemoveImpl(
-      null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == todo
+          ? _value.todo
+          : todo // ignore: cast_nullable_to_non_nullable
+              as Todo,
     ));
+  }
+
+  /// Create a copy of TodoEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TodoCopyWith<$Res> get todo {
+    return $TodoCopyWith<$Res>(_value.todo, (value) {
+      return _then(_value.copyWith(todo: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$RemoveImpl with DiagnosticableTreeMixin implements _Remove {
-  const _$RemoveImpl(this.id);
+  const _$RemoveImpl(this.todo);
 
   @override
-  final String id;
+  final Todo todo;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TodoEvent.remove(id: $id)';
+    return 'TodoEvent.remove(todo: $todo)';
   }
 
   @override
@@ -262,7 +286,7 @@ class _$RemoveImpl with DiagnosticableTreeMixin implements _Remove {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'TodoEvent.remove'))
-      ..add(DiagnosticsProperty('id', id));
+      ..add(DiagnosticsProperty('todo', todo));
   }
 
   @override
@@ -270,11 +294,11 @@ class _$RemoveImpl with DiagnosticableTreeMixin implements _Remove {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoveImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.todo, todo) || other.todo == todo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, todo);
 
   /// Create a copy of TodoEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -288,35 +312,38 @@ class _$RemoveImpl with DiagnosticableTreeMixin implements _Remove {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String id) remove,
+    required TResult Function(Todo todo) remove,
     required TResult Function(Todo todo) insert,
+    required TResult Function(Todo todo) update,
     required TResult Function() getData,
   }) {
-    return remove(id);
+    return remove(todo);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String id)? remove,
+    TResult? Function(Todo todo)? remove,
     TResult? Function(Todo todo)? insert,
+    TResult? Function(Todo todo)? update,
     TResult? Function()? getData,
   }) {
-    return remove?.call(id);
+    return remove?.call(todo);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String id)? remove,
+    TResult Function(Todo todo)? remove,
     TResult Function(Todo todo)? insert,
+    TResult Function(Todo todo)? update,
     TResult Function()? getData,
     required TResult orElse(),
   }) {
     if (remove != null) {
-      return remove(id);
+      return remove(todo);
     }
     return orElse();
   }
@@ -327,6 +354,7 @@ class _$RemoveImpl with DiagnosticableTreeMixin implements _Remove {
     required TResult Function(_Started value) started,
     required TResult Function(_Remove value) remove,
     required TResult Function(_Insert value) insert,
+    required TResult Function(_Update value) update,
     required TResult Function(_GetData value) getData,
   }) {
     return remove(this);
@@ -338,6 +366,7 @@ class _$RemoveImpl with DiagnosticableTreeMixin implements _Remove {
     TResult? Function(_Started value)? started,
     TResult? Function(_Remove value)? remove,
     TResult? Function(_Insert value)? insert,
+    TResult? Function(_Update value)? update,
     TResult? Function(_GetData value)? getData,
   }) {
     return remove?.call(this);
@@ -349,6 +378,7 @@ class _$RemoveImpl with DiagnosticableTreeMixin implements _Remove {
     TResult Function(_Started value)? started,
     TResult Function(_Remove value)? remove,
     TResult Function(_Insert value)? insert,
+    TResult Function(_Update value)? update,
     TResult Function(_GetData value)? getData,
     required TResult orElse(),
   }) {
@@ -360,9 +390,9 @@ class _$RemoveImpl with DiagnosticableTreeMixin implements _Remove {
 }
 
 abstract class _Remove implements TodoEvent {
-  const factory _Remove(final String id) = _$RemoveImpl;
+  const factory _Remove(final Todo todo) = _$RemoveImpl;
 
-  String get id;
+  Todo get todo;
 
   /// Create a copy of TodoEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -460,8 +490,9 @@ class _$InsertImpl with DiagnosticableTreeMixin implements _Insert {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String id) remove,
+    required TResult Function(Todo todo) remove,
     required TResult Function(Todo todo) insert,
+    required TResult Function(Todo todo) update,
     required TResult Function() getData,
   }) {
     return insert(todo);
@@ -471,8 +502,9 @@ class _$InsertImpl with DiagnosticableTreeMixin implements _Insert {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String id)? remove,
+    TResult? Function(Todo todo)? remove,
     TResult? Function(Todo todo)? insert,
+    TResult? Function(Todo todo)? update,
     TResult? Function()? getData,
   }) {
     return insert?.call(todo);
@@ -482,8 +514,9 @@ class _$InsertImpl with DiagnosticableTreeMixin implements _Insert {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String id)? remove,
+    TResult Function(Todo todo)? remove,
     TResult Function(Todo todo)? insert,
+    TResult Function(Todo todo)? update,
     TResult Function()? getData,
     required TResult orElse(),
   }) {
@@ -499,6 +532,7 @@ class _$InsertImpl with DiagnosticableTreeMixin implements _Insert {
     required TResult Function(_Started value) started,
     required TResult Function(_Remove value) remove,
     required TResult Function(_Insert value) insert,
+    required TResult Function(_Update value) update,
     required TResult Function(_GetData value) getData,
   }) {
     return insert(this);
@@ -510,6 +544,7 @@ class _$InsertImpl with DiagnosticableTreeMixin implements _Insert {
     TResult? Function(_Started value)? started,
     TResult? Function(_Remove value)? remove,
     TResult? Function(_Insert value)? insert,
+    TResult? Function(_Update value)? update,
     TResult? Function(_GetData value)? getData,
   }) {
     return insert?.call(this);
@@ -521,6 +556,7 @@ class _$InsertImpl with DiagnosticableTreeMixin implements _Insert {
     TResult Function(_Started value)? started,
     TResult Function(_Remove value)? remove,
     TResult Function(_Insert value)? insert,
+    TResult Function(_Update value)? update,
     TResult Function(_GetData value)? getData,
     required TResult orElse(),
   }) {
@@ -540,6 +576,184 @@ abstract class _Insert implements TodoEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InsertImplCopyWith<_$InsertImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateImplCopyWith<$Res> {
+  factory _$$UpdateImplCopyWith(
+          _$UpdateImpl value, $Res Function(_$UpdateImpl) then) =
+      __$$UpdateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Todo todo});
+
+  $TodoCopyWith<$Res> get todo;
+}
+
+/// @nodoc
+class __$$UpdateImplCopyWithImpl<$Res>
+    extends _$TodoEventCopyWithImpl<$Res, _$UpdateImpl>
+    implements _$$UpdateImplCopyWith<$Res> {
+  __$$UpdateImplCopyWithImpl(
+      _$UpdateImpl _value, $Res Function(_$UpdateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TodoEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? todo = null,
+  }) {
+    return _then(_$UpdateImpl(
+      null == todo
+          ? _value.todo
+          : todo // ignore: cast_nullable_to_non_nullable
+              as Todo,
+    ));
+  }
+
+  /// Create a copy of TodoEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TodoCopyWith<$Res> get todo {
+    return $TodoCopyWith<$Res>(_value.todo, (value) {
+      return _then(_value.copyWith(todo: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$UpdateImpl with DiagnosticableTreeMixin implements _Update {
+  const _$UpdateImpl(this.todo);
+
+  @override
+  final Todo todo;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TodoEvent.update(todo: $todo)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TodoEvent.update'))
+      ..add(DiagnosticsProperty('todo', todo));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateImpl &&
+            (identical(other.todo, todo) || other.todo == todo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, todo);
+
+  /// Create a copy of TodoEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
+      __$$UpdateImplCopyWithImpl<_$UpdateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Todo todo) remove,
+    required TResult Function(Todo todo) insert,
+    required TResult Function(Todo todo) update,
+    required TResult Function() getData,
+  }) {
+    return update(todo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(Todo todo)? remove,
+    TResult? Function(Todo todo)? insert,
+    TResult? Function(Todo todo)? update,
+    TResult? Function()? getData,
+  }) {
+    return update?.call(todo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Todo todo)? remove,
+    TResult Function(Todo todo)? insert,
+    TResult Function(Todo todo)? update,
+    TResult Function()? getData,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(todo);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Remove value) remove,
+    required TResult Function(_Insert value) insert,
+    required TResult Function(_Update value) update,
+    required TResult Function(_GetData value) getData,
+  }) {
+    return update(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Remove value)? remove,
+    TResult? Function(_Insert value)? insert,
+    TResult? Function(_Update value)? update,
+    TResult? Function(_GetData value)? getData,
+  }) {
+    return update?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Insert value)? insert,
+    TResult Function(_Update value)? update,
+    TResult Function(_GetData value)? getData,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Update implements TodoEvent {
+  const factory _Update(final Todo todo) = _$UpdateImpl;
+
+  Todo get todo;
+
+  /// Create a copy of TodoEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -591,8 +805,9 @@ class _$GetDataImpl with DiagnosticableTreeMixin implements _GetData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String id) remove,
+    required TResult Function(Todo todo) remove,
     required TResult Function(Todo todo) insert,
+    required TResult Function(Todo todo) update,
     required TResult Function() getData,
   }) {
     return getData();
@@ -602,8 +817,9 @@ class _$GetDataImpl with DiagnosticableTreeMixin implements _GetData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String id)? remove,
+    TResult? Function(Todo todo)? remove,
     TResult? Function(Todo todo)? insert,
+    TResult? Function(Todo todo)? update,
     TResult? Function()? getData,
   }) {
     return getData?.call();
@@ -613,8 +829,9 @@ class _$GetDataImpl with DiagnosticableTreeMixin implements _GetData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String id)? remove,
+    TResult Function(Todo todo)? remove,
     TResult Function(Todo todo)? insert,
+    TResult Function(Todo todo)? update,
     TResult Function()? getData,
     required TResult orElse(),
   }) {
@@ -630,6 +847,7 @@ class _$GetDataImpl with DiagnosticableTreeMixin implements _GetData {
     required TResult Function(_Started value) started,
     required TResult Function(_Remove value) remove,
     required TResult Function(_Insert value) insert,
+    required TResult Function(_Update value) update,
     required TResult Function(_GetData value) getData,
   }) {
     return getData(this);
@@ -641,6 +859,7 @@ class _$GetDataImpl with DiagnosticableTreeMixin implements _GetData {
     TResult? Function(_Started value)? started,
     TResult? Function(_Remove value)? remove,
     TResult? Function(_Insert value)? insert,
+    TResult? Function(_Update value)? update,
     TResult? Function(_GetData value)? getData,
   }) {
     return getData?.call(this);
@@ -652,6 +871,7 @@ class _$GetDataImpl with DiagnosticableTreeMixin implements _GetData {
     TResult Function(_Started value)? started,
     TResult Function(_Remove value)? remove,
     TResult Function(_Insert value)? insert,
+    TResult Function(_Update value)? update,
     TResult Function(_GetData value)? getData,
     required TResult orElse(),
   }) {

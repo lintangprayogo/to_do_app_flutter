@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/presentation/component/todo_filter.dart';
-import 'package:to_do_app/presentation/component/todo_header.dart';
-import 'package:to_do_app/presentation/component/todo_list.dart';
-import 'package:to_do_app/presentation/component/todo_search_field.dart';
-import 'package:to_do_app/presentation/component/todo_text_field.dart';
+import 'package:to_do_app/presentation/page/component/todo_filter.dart';
+import 'package:to_do_app/presentation/page/component/todo_header.dart';
+import 'package:to_do_app/presentation/page/component/todo_list.dart';
+import 'package:to_do_app/presentation/page/component/todo_search_field.dart';
+import 'package:to_do_app/presentation/page/component/todo_text_field.dart';
+
 
 class TodoPage extends StatelessWidget {
   const TodoPage({super.key});
@@ -19,7 +20,7 @@ class TodoPage extends StatelessWidget {
             TodoHeader(),
             TodoTextField(),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             TodoSearchField(),
             TodoFilter(),

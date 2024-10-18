@@ -14,7 +14,17 @@ class RepoImpl implements Repo {
   }
 
   @override
-  Future<void> insert(Todo todo) {
-    return _localDataSource.insert(todo);
+  Future<void> insert(Todo todo) async {
+    return await _localDataSource.insert(todo);
+  }
+
+  @override
+  Future<void> delete(id) async {
+    await _localDataSource.delete(id);
+  }
+
+  @override
+  Future<void> update(Todo todo) async {
+    await _localDataSource.update(todo);
   }
 }
