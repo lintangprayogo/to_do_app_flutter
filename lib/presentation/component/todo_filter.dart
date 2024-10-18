@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/models/filter.dart';
+import 'package:to_do_app/domain/models/filter.dart';
 
 class FilterButton extends StatelessWidget {
   final Filter filter;

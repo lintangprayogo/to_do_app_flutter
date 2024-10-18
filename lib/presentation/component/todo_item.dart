@@ -1,4 +1,4 @@
-import 'package:to_do_app/models/todo_model.dart';
+import 'package:to_do_app/domain/models/todo.dart';
 import 'package:flutter/material.dart';
 
 class TodoItem extends StatefulWidget {
@@ -71,7 +71,7 @@ class _TodoItemState extends State<TodoItem> {
         );
       },
       leading: Checkbox(
-        value: widget.todo.completed,
+        value: widget.todo.done,
         onChanged: (bool? checked) {
         },
       ),
